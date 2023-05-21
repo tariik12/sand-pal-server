@@ -33,7 +33,6 @@ async function run() {
 
         const sandPalToysCollection =client.db('spkToys').collection('sandPalToy')
 
-        // const indexKye = {toyName:1}
         // const indexOptions ={name:"toyName"}
 
         // const result = await addToysCollection.createIndex(indexKye,indexOptions);
@@ -74,9 +73,6 @@ async function run() {
             const allToys = await addToysCollection.find({}).toArray();
             res.send(allToys)
         })  
-
-        
-      
         //myToy
         app.get('/myToy/:email', async(req,res)=>{
             console.log(req.params.email)
@@ -119,8 +115,6 @@ async function run() {
             res.send(result)
 
         })
-
-
         app.delete('/myToy/:id', async(req,res) =>{
             const id = req.params.id;
             console.log(id)
@@ -135,7 +129,6 @@ async function run() {
          client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
-        // Ensures that the client will close when you finish/error
         // await client.close();
     }
 }
