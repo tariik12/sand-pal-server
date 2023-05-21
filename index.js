@@ -84,24 +84,15 @@ async function run() {
             res.send(myToy)
         })
 
-        // app.get("/myToy/:email", async (req, res) => {
-        //     const result = await addToysCollection.find().sort({ price: 1 }).toArray();
-        //     res.send(
-        //       result.map((toy) => ({ ...toy, price: parseInt(toy.price) }))
-        //     );
-        //   });
           app.get("/ass/:email", async (req, res) => {
-            const result = await addToysCollection.find().sort( {price: 1} ).toArray();
+            const result = await addToysCollection.find({sellerEmail: req.params.email}).sort( {price: 1} ).toArray();
             res.send(result);
           });
           app.get("/des/:email", async (req, res) => {
-            const result = await addToysCollection.find().sort( {price: -1} ).toArray();
+            const result = await addToysCollection.find({sellerEmail: req.params.email}).sort( {price: -1} ).toArray();
             res.send(result);
           });
-        //   app.get("/myToy/:email", async (req, res) => {
-        //     const result = await addToysCollection.find().sort({ price: 1 }).toArray();
-        //     res.send(result);
-        //   });
+      
         app.get('/allToys/:id',async(req,res) =>{
             const id = req.params.id;
             const query = {_id: new ObjectId(id)}
@@ -151,5 +142,5 @@ async function run() {
 run().catch(console.dir);
 
 app.listen(port, () => {
-    console.log('port console is running', port)
+    console.log('port console is running')
 })
