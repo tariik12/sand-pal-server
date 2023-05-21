@@ -32,10 +32,6 @@ async function run() {
         const addToysCollection = client.db('spkToys').collection('addToys')
 
         const sandPalToysCollection =client.db('spkToys').collection('sandPalToy')
-
-        // const indexOptions ={name:"toyName"}
-
-        // const result = await addToysCollection.createIndex(indexKye,indexOptions);
         //search
         app.get('/allToySearch/:text',async(req,res)=>{
             const searchToys = req.params.text;
